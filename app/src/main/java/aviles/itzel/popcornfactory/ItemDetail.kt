@@ -14,9 +14,9 @@ class ItemDetail : AppCompatActivity() {
         val bundle = intent.extras
 
         if(bundle != null){
-            iv_movie_img.setImageResource(bundle.getInt("header"))
-            tv_movie_title.setText(bundle.getInt("title"))
-            tv_movie_desc.setText(bundle.getInt("description"))
+            iv_item_img.setImageResource(bundle.getInt("header"))
+            tv_item_title.setText(bundle.getString("title"))
+            tv_movie_desc.setText(bundle.getString("description"))
         }
     }
 }
