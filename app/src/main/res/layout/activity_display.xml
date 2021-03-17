@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey"
+    android:background="@color/gray"
     android:orientation="vertical"
     tools:context=".DisplayActivity">
 
@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-condensed"
             android:gravity="left"
-            android:text="SERIES"
+            android:text="MOVIES"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="30dp"
             android:textColor="@color/yellow"
@@ -36,7 +36,7 @@
     </LinearLayout>
 
     <GridView
-        android:id="@+id/gridview_series"
+        android:id="@+id/gridview_movies"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
@@ -45,43 +45,6 @@
         android:layout_marginBottom="10dp"
         android:numColumns="3" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="2.5dp"
-            android:layout_weight="3"
-            android:layout_marginTop="12dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="30dp"
-
-            android:background="@color/yellow" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-condensed"
-            android:gravity="right"
-            android:paddingRight="30dp"
-            android:text="MOVIES"
-            android:textColor="@color/yellow"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-    </LinearLayout>
-
-
-    <GridView
-        android:id="@+id/gridview_movies"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="20dp"
-        android:numColumns="3" />
 
 
 </LinearLayout>
