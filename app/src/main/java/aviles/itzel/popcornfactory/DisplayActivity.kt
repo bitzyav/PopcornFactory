@@ -60,7 +60,6 @@ class ItemAdapter: BaseAdapter {
 
         view.iv_item.setOnClickListener(){
             var seatsAvailable = 20 - item.seats.size
-            Log.d("SEATS", "$seatsAvailable")
             var intent = Intent(context, ItemDetail::class.java)
             intent.putExtra("title", item.title)
             intent.putExtra("image", item.image)

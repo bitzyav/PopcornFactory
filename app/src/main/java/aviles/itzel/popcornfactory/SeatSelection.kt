@@ -1,11 +1,11 @@
 package aviles.itzel.popcornfactory
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.RadioGroup
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 class SeatSelection : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -13,22 +13,25 @@ class SeatSelection : AppCompatActivity() {
         setContentView(R.layout.activity_seat_selection)
 
         val title: TextView = findViewById(R.id.tv_title_seats)
-        var posMovie = -1
+        var movie: String = ""
+        var seats = 0
 
         val bundle = intent.extras
 
         if(bundle != null){
-            title.setText(bundle.getString("title"))
-            posMovie = bundle.getInt("id")
+            title.setText(bundle.getString("movie"))
+            movie = bundle.getString("movie")!!
+            seats = bundle.getInt("seats")
         }
 
         val confirm: Button = findViewById(R.id.btn_confirm)
 
         confirm.setOnClickListener{
-            //añadir logica para reservar el lugar seleccionado por el usuario
-            //hacer una nueva actividad donde se vea el resumen de la compra es decir que se agregue el nombre del cliente y se vea el asiento que se seleccionó
-
-            Toast.makeText(this, "Enjoy the movie :D", Toast.LENGTH_LONG).show()
+            var seat_selected = seat_selection()
+            val intent: Intent = Intent(this, ReservationActivity::class.java)
+            intent.putExtra("seat", seat_selected)
+            intent.putExtra("movie", movie)
+            startActivity(intent)
         }
 
         val row1: RadioGroup = findViewById(R.id.row1)
@@ -72,5 +75,56 @@ class SeatSelection : AppCompatActivity() {
                 row4.check(checkedId)
             }
         }
+
+        disableButtons(seats)
+    }
+
+    fun disableButtons(seatsAv: Int){
+        var seats: ArrayList<Int> = ArrayList<Int>()
+
+        for(i in 0 until seatsAv){
+            seats.add(1)
+        }
+        for(i in seatsAv until 20){
+            seats.add(0)
+        }
+
+        Collections.shuffle(seats)
+
+        for(i in 0 until 20){
+            if(seats.get(i) == 0){
+                var radioId: String = "seat" + (i+1)
+                var resId: Int = resources.getIdentifier(radioId, "id", packageName)
+                var radio: RadioButton = findViewById(resId)
+                radio.isEnabled = false
+            }
+        }
+    }
+
+    fun seat_selection(): Int{
+        var seat = 0
+        for(i in 0 until 20){
+            var radioId: String = "seat" + (i+1)
+            var resId: Int = resources.getIdentifier(radioId, "id", packageName)
+            var radio: RadioButton = findViewById(resId)
+
+            if(radio.isChecked){
+                seat = i+1
+            }
+        }
+        return seat
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
